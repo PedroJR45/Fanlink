@@ -11,33 +11,24 @@
         android:id="@+id/background_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="150dp"
         android:background="@drawable/rounded_bottom_background"
+        android:backgroundTint="#0B67AC"
+        android:backgroundTintMode="src_in"
+        android:drawingCacheQuality="high"
+        android:rotationX="-6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_weight="0.5"
-        tools:layout_editor_absoluteX="50dp" />
-
-    <TextView
-        android:id="@+id/bienvenida"
-        android:layout_width="142dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="160dp"
-        android:text="Bienvenido a"
-        android:textAlignment="gravity"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="265dp"
-        android:layout_height="90dp"
-        android:layout_marginTop="196dp"
-        android:text="Fanlink"
+        android:layout_width="331dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="148dp"
+        android:text="FanLink"
         android:textAlignment="center"
         android:textColor="@color/mi_secundario"
         android:textSize="60sp"
@@ -45,5 +36,47 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background_container" />
+
+    <TextView
+        android:id="@+id/bienvenida"
+        android:layout_width="194dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="172dp"
+        android:breakStrategy="simple"
+        android:text="Bienvenido a"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="@string/material_motion_easing_accelerated"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="215dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#311A4C73"
+        android:text="Iniciar sesión"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="581dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="215dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#311A4C73"
+        android:text="Registrarse"
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="643dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="236dp"
+        android:layout_height="246dp"
+        app:srcCompat="@drawable/logo_removebg_preview"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="242dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
