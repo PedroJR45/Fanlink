@@ -9,8 +9,8 @@
 
     <View
         android:id="@+id/background_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="412dp"
+        android:layout_height="569dp"
         android:layout_marginBottom="200dp"
         android:background="@drawable/rounded_bottom_background"
 
@@ -19,35 +19,43 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_weight="0.5"
-        tools:layout_editor_absoluteX="16dp" />
+        tools:layout_editor_absoluteX="0dp" />
 
     <View
         android:id="@+id/view1"
-        android:layout_width="369dp"
-        android:layout_height="320dp"
+        android:layout_width="372dp"
+        android:layout_height="270dp"
         android:background="@drawable/rounded_corners_gray_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88" />
+        app:layout_constraintVertical_bias="0.806" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="180dp"
-        android:layout_height="44dp"
+        android:layout_width="202dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#311A4C73"
         android:text="Iniciar Sesion"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="613dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="203dp"
-        android:layout_height="178dp"
-        app:srcCompat="@drawable/verificacion"
-        tools:layout_editor_absoluteX="104dp"
-        tools:layout_editor_absoluteY="63dp" />
+        android:layout_width="233dp"
+        android:layout_height="204dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/background_container"
+        app:layout_constraintVertical_bias="0.166"
+        app:srcCompat="@drawable/verificacion" />
 
     <TextView
         android:id="@+id/textView"
@@ -57,25 +65,63 @@
         android:text="Iniciar Sesión"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
-        tools:layout_editor_absoluteX="104dp"
-        tools:layout_editor_absoluteY="302dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="312dp" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="277dp"
-        android:layout_height="39dp"
+        android:id="@+id/editTextText"
+        android:layout_width="287dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#1A4C73"
         android:ems="10"
-        android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="78dp"
-        tools:layout_editor_absoluteY="435dp" />
+        android:hint="Escribe tu correo..."
+        android:hyphenationFrequency="normal"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.604"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/editTextTextPassword"
-        android:layout_width="277dp"
-        android:layout_height="45dp"
+        android:layout_width="283dp"
+        android:layout_height="40dp"
+        android:drawableTint="#532E2E"
         android:ems="10"
+        android:hint="Escribe tu contraseña..."
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="79dp"
-        tools:layout_editor_absoluteY="510dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.585"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="482dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="43dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/correro"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="420dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="44dp"
+        android:layout_height="38dp"
+        app:srcCompat="@drawable/contrase_a"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="482dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="¿Aun no tienes una cuenta? Registrate aqui"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        tools:layout_editor_absoluteX="71dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
