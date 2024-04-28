@@ -2,32 +2,32 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/Login"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <View
-        android:id="@+id/background_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="150dp"
+        android:id="@+id/fondoHome"
+        android:layout_width="412dp"
+        android:layout_height="579dp"
         android:background="@drawable/rounded_bottom_background"
         android:backgroundTint="#0B67AC"
         android:backgroundTintMode="src_in"
         android:drawingCacheQuality="high"
         android:rotationX="-6"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintVertical_weight="0.5"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_weight="0.5" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tituloHome"
         android:layout_width="331dp"
         android:layout_height="82dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="136dp"
         android:text="FanLink"
         android:textAlignment="center"
         android:textColor="@color/mi_secundario"
@@ -35,48 +35,53 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/background_container" />
+        app:layout_constraintTop_toTopOf="@+id/fondoHome" />
 
     <TextView
-        android:id="@+id/bienvenida"
+        android:id="@+id/bienvenidaHome"
         android:layout_width="194dp"
         android:layout_height="36dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="172dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="176dp"
         android:breakStrategy="simple"
         android:text="Bienvenido a"
         android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:textStyle="@string/material_motion_easing_accelerated"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonLoginHome"
         android:layout_width="215dp"
         android:layout_height="48dp"
+        android:layout_marginTop="80dp"
         android:backgroundTint="#311A4C73"
         android:text="Iniciar sesión"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="581dp" />
+        app:layout_constraintTop_toBottomOf="@+id/logoHome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonCheckHome"
         android:layout_width="215dp"
         android:layout_height="48dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#311A4C73"
         android:text="Registrarse"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="643dp" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonLoginHome"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/logoHome"
         android:layout_width="236dp"
         android:layout_height="246dp"
-        app:srcCompat="@drawable/logo_removebg_preview"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="242dp" />
+        android:layout_marginTop="36dp"
+        app:layout_constraintTop_toBottomOf="@+id/tituloHome"
+        app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:srcCompat="@drawable/logo_removebg_preview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
