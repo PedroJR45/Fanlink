@@ -14,21 +14,68 @@
         android:layout_marginBottom="200dp"
         android:background="@drawable/rounded_bottom_background"
 
+        android:backgroundTint="#0B67AC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_weight="0.5"
-        tools:layout_editor_absoluteX="50dp" />
+        tools:layout_editor_absoluteX="16dp" />
 
     <View
         android:id="@+id/view1"
-        android:layout_width="345dp"
-        android:layout_height="260dp"
+        android:layout_width="369dp"
+        android:layout_height="320dp"
         android:background="@drawable/rounded_corners_gray_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.711" />
+        app:layout_constraintVertical_bias="0.88" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="180dp"
+        android:layout_height="44dp"
+        android:backgroundTint="#311A4C73"
+        android:text="Iniciar Sesion"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="613dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="203dp"
+        android:layout_height="178dp"
+        app:srcCompat="@drawable/verificacion"
+        tools:layout_editor_absoluteX="104dp"
+        tools:layout_editor_absoluteY="63dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#F3F1F1"
+        android:text="Iniciar Sesión"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        tools:layout_editor_absoluteX="104dp"
+        tools:layout_editor_absoluteY="302dp" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="277dp"
+        android:layout_height="39dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        tools:layout_editor_absoluteX="78dp"
+        tools:layout_editor_absoluteY="435dp" />
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="277dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="79dp"
+        tools:layout_editor_absoluteY="510dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
