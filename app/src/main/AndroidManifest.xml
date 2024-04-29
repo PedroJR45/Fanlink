@@ -25,6 +25,9 @@
             android:name=".Iniciar_session"
             android:exported="false" />
         <activity
+            android:name=".registrarse"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -33,6 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

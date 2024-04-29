@@ -2,13 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Login"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".registrarse">
 
     <View
         android:id="@+id/fondoRegistro"
         android:layout_width="417dp"
-        android:layout_height="568dp"
+        android:layout_height="650dp"
         android:background="@drawable/rounded_bottom_background"
         android:backgroundTint="#0B67AC"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,25 +23,25 @@
 
     <View
         android:id="@+id/panelRegistro"
-        android:layout_width="360dp"
-        android:layout_height="339dp"
+        android:layout_width="389dp"
+        android:layout_height="367dp"
         android:layout_marginTop="2dp"
         android:background="@drawable/rounded_corners_gray_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registro"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.324" />
 
     <Button
         android:id="@+id/btnRegistrarse"
-        android:layout_width="202dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="212dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#311A4C73"
         android:text="Registrarse"
         app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/panelRegistro"
         app:layout_constraintTop_toBottomOf="@+id/textContraseñaRegistro" />
 
@@ -54,8 +57,8 @@
 
     <EditText
         android:id="@+id/textConfContraseñaRegistro"
-        android:layout_width="278dp"
-        android:layout_height="40dp"
+        android:layout_width="295dp"
+        android:layout_height="41dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:drawableTint="#532E2E"
@@ -77,8 +80,8 @@
 
     <EditText
         android:id="@+id/textContraseñaRegistro"
-        android:layout_width="278dp"
-        android:layout_height="41dp"
+        android:layout_width="296dp"
+        android:layout_height="38dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:drawableTint="#532E2E"
@@ -147,8 +150,8 @@
 
     <EditText
         android:id="@+id/textoCorreoRegistro"
-        android:layout_width="278dp"
-        android:layout_height="39dp"
+        android:layout_width="296dp"
+        android:layout_height="41dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
@@ -159,8 +162,8 @@
 
     <EditText
         android:id="@+id/usuarioRegistro"
-        android:layout_width="278dp"
-        android:layout_height="46dp"
+        android:layout_width="295dp"
+        android:layout_height="45dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#1A4C73"

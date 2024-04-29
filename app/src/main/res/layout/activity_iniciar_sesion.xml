@@ -5,45 +5,46 @@
     android:id="@+id/Login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Iniciar_session">
 
 
     <View
         android:id="@+id/fondoInicioSesion"
         android:layout_width="417dp"
-        android:layout_height="568dp"
+        android:layout_height="650dp"
         android:background="@drawable/rounded_bottom_background"
         android:backgroundTint="#0B67AC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <View
         android:id="@+id/panelInicioSesion"
-        android:layout_width="372dp"
-        android:layout_height="270dp"
+        android:layout_width="384dp"
+        android:layout_height="293dp"
         android:background="@drawable/rounded_corners_gray_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.806" />
+        app:layout_constraintTop_toBottomOf="@+id/textInicioSesion"
+        app:layout_constraintVertical_bias="0.225" />
 
     <Button
         android:id="@+id/botonIniciarSesion"
         android:layout_width="202dp"
         android:layout_height="42dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="48dp"
         android:backgroundTint="#311A4C73"
         android:text="Iniciar Sesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contreaseñaInicioSesion" />
+
 
     <ImageView
         android:id="@+id/VerificacionInicioSesion"
@@ -55,8 +56,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/fondoInicioSesion"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/verificacion" />
-
 
     <TextView
         android:id="@+id/textInicioSesion"
@@ -70,19 +71,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.416" />
 
     <EditText
         android:id="@+id/contreaseñaInicioSesion"
-        android:layout_width="283dp"
+        android:layout_width="299dp"
         android:layout_height="40dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="12dp"
         android:drawableTint="#532E2E"
         android:ems="10"
         android:hint="Escribe tu contraseña..."
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintHorizontal_bias="0.732"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CorreoInicioSesion" />
 
@@ -90,10 +91,10 @@
         android:id="@+id/imageCorreoInicioSesion"
         android:layout_width="43dp"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="420dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/panelInicioSesion"
         app:srcCompat="@drawable/correro" />
 
     <ImageView
@@ -101,7 +102,7 @@
         android:layout_width="44dp"
         android:layout_height="38dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageCorreoInicioSesion"
         app:srcCompat="@drawable/contrase_a" />
@@ -112,21 +113,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="¿Aun no tienes una cuenta? Registrate aqui"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botonIniciarSesion" />
 
     <EditText
         android:id="@+id/CorreoInicioSesion"
-        android:layout_width="283dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="299dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="60dp"
         android:ems="10"
         android:hint="Escribe tu correo..."
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintHorizontal_bias="0.732"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInicioSesion" />
+        app:layout_constraintTop_toTopOf="@+id/panelInicioSesion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
