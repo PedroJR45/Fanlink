@@ -2,6 +2,7 @@ package com.example.fanlynk
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,10 +18,19 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val btn1: Button = findViewById(R.id.buttonLoginHome)
+        btn1.setOnClickListener {
+            val intent: Intent = Intent(this, Iniciar_session::class.java)
+            startActivity(intent)
+        }
+
+        val btn2: Button = findViewById(R.id.buttonCheckHome)
+        btn2.setOnClickListener {
+            val intent: Intent = Intent(this, registro::class.java)
+            startActivity(intent)
+        }
     }
 
-    fun Ir_a_inicio_de_sesion(view: Iniciar_session) {
-        val intent = Intent(this, Iniciar_session::class.java)
-        startActivity(intent)
-    }
+
+
 }

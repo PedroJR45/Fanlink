@@ -6,5 +6,5 @@
 
     <color name="mi_primario">#186DB1</color>
     <color name="mi_secundario">#FFFFFFFF</color>
-    <color name="Fondo">0B67AC</color>
+    <color name="Fondo">#0B67AC</color>
 </resources>

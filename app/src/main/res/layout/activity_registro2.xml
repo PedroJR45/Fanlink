@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".registro">
+
+    <View
+        android:id="@+id/fondoRegistro"
+        android:layout_width="417dp"
+        android:layout_height="568dp"
+        android:background="@drawable/rounded_bottom_background"
+        android:backgroundTint="#0B67AC"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/panelRegistro"
+        android:layout_width="360dp"
+        android:layout_height="339dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/rounded_corners_gray_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registro"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <Button
+        android:id="@+id/btnRegistrarse"
+        android:layout_width="202dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#311A4C73"
+        android:text="Registrarse"
+        app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
+        app:layout_constraintStart_toStartOf="@+id/panelRegistro"
+        app:layout_constraintTop_toBottomOf="@+id/textContraseñaRegistro" />
+
+    <TextView
+        android:id="@+id/textCuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="¿Ya tienes una cuenta? Ingresa aquí"
+        app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
+        app:layout_constraintStart_toStartOf="@+id/panelRegistro"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegistrarse" />
+
+    <EditText
+        android:id="@+id/textConfContraseñaRegistro"
+        android:layout_width="278dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:drawableTint="#532E2E"
+        android:ems="10"
+        android:hint="Confirma tu contraseña..."
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
+        app:layout_constraintTop_toBottomOf="@+id/usuarioRegistro" />
+
+    <ImageView
+        android:id="@+id/imgContraseñaRegistro2"
+        android:layout_width="40dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/textContraseñaRegistro"
+        app:layout_constraintStart_toStartOf="@+id/panelRegistro"
+        app:layout_constraintTop_toBottomOf="@+id/imgContraseñaRegistro"
+        app:srcCompat="@drawable/contrase_a" />
+
+    <EditText
+        android:id="@+id/textContraseñaRegistro"
+        android:layout_width="278dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:drawableTint="#532E2E"
+        android:ems="10"
+        android:hint="Confirma tu contraseña..."
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
+        app:layout_constraintTop_toBottomOf="@+id/textConfContraseñaRegistro" />
+
+    <ImageView
+        android:id="@+id/imgUserRegistro"
+        android:layout_width="43dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/usuarioRegistro"
+        app:layout_constraintStart_toStartOf="@+id/panelRegistro"
+        app:layout_constraintTop_toBottomOf="@+id/imgCorreoRegistro"
+        app:srcCompat="@drawable/usuario" />
+
+    <ImageView
+        android:id="@+id/imgContraseñaRegistro"
+        android:layout_width="40dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintEnd_toStartOf="@+id/textConfContraseñaRegistro"
+        app:layout_constraintStart_toStartOf="@+id/panelRegistro"
+        app:layout_constraintTop_toBottomOf="@+id/imgUserRegistro"
+        app:srcCompat="@drawable/contrase_a" />
+
+    <ImageView
+        android:id="@+id/imgCorreoRegistro"
+        android:layout_width="43dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/textoCorreoRegistro"
+        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintStart_toStartOf="@+id/panelRegistro"
+        app:layout_constraintTop_toTopOf="@+id/panelRegistro"
+        app:srcCompat="@drawable/correro" />
+
+    <TextView
+        android:id="@+id/registro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="284dp"
+        android:backgroundTint="#F3F1F1"
+        android:text="Registrarse"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/verificacionRegistro"
+        android:layout_width="233dp"
+        android:layout_height="204dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/registro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fondoRegistro"
+        app:layout_constraintVertical_bias="0.408"
+        app:srcCompat="@drawable/verificacion" />
+
+    <EditText
+        android:id="@+id/textoCorreoRegistro"
+        android:layout_width="278dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="Escribe tu correo..."
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
+        app:layout_constraintTop_toTopOf="@+id/panelRegistro" />
+
+    <EditText
+        android:id="@+id/usuarioRegistro"
+        android:layout_width="278dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#1A4C73"
+        android:ems="10"
+        android:hint="Escribe tu nombre..."
+        android:hyphenationFrequency="normal"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
+        app:layout_constraintTop_toBottomOf="@+id/textoCorreoRegistro" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
