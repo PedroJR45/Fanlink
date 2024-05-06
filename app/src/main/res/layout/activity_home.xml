@@ -58,7 +58,7 @@
         android:id="@+id/buttonLoginHome"
         android:layout_width="215dp"
         android:layout_height="48dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="72dp"
         android:backgroundTint="#311A4C73"
         android:text="Iniciar sesión"
         app:layout_constraintEnd_toEndOf="parent"

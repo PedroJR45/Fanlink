@@ -1,77 +1,48 @@
-package com.example.pruebaconectividad
+package com.example.fanlynk
 
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.pruebaconectividad.databinding.ActivityMainBinding
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.PreparedStatement
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // Código para la inserción de datos en MySQL
-        binding.button.setOnClickListener {
-            val nombre = binding.editTextTextPersonName.text.toString()
-            val email = binding.editTextTextPersonName2.text.toString()
-
-            InsertarDatos().execute(nombre, email)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_home)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.Login)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
         }
 
-        // Código para la navegación a otras actividades
-        val btn1: Button = findViewById(R.id.buttonLoginHome)
-        btn1.setOnClickListener {
-            val intent: Intent = Intent(this, Iniciar_session::class.java)
-            startActivity(intent)
+        // Obtener referencias a los botones
+        val buttonLoginHome = findViewById<Button>(R.id.buttonLoginHome)
+        val buttonCheckHome = findViewById<Button>(R.id.buttonCheckHome)
+
+        // Configurar OnClickListener para los botones
+        buttonLoginHome.setOnClickListener {
+            Ir_a_inicio_de_sesion()
         }
 
-        val btn2: Button = findViewById(R.id.buttonCheckHome)
-        btn2.setOnClickListener {
-            val intent: Intent = Intent(this, registro::class.java)
-            startActivity(intent)
+        buttonCheckHome.setOnClickListener {
+            Ir_a_Registrarse()
         }
     }
 
-    private inner class InsertarDatos : AsyncTask<String, Void, String>() {
-        override fun doInBackground(vararg params: String?): String {
-            val nombre = params[0]
-            val email = params[1]
+    private fun Ir_a_inicio_de_sesion() {
+        val intent = Intent(this, Iniciar_session::class.java)
+        startActivity(intent)
+    }
 
-            try {
-                Class.forName("com.mysql.jdbc.Driver")
-                val conn: Connection = DriverManager.getConnection("jdbc:mysql://ec2-54-90-34-74.compute-1.amazonaws.com:3306/itslp", "usuario", "12345")
-
-                val query = "INSERT INTO usuarios (nombre, email) VALUES (?,?)"
-                val statement: PreparedStatement = conn.prepareStatement(query)
-                statement.setString(1, nombre)
-                statement.setString(2, email)
-
-                val rowsInserted: Int = statement.executeUpdate()
-                conn.close()
-
-                return if (rowsInserted > 0) {
-                    "Datos insertados correctamente"
-                } else {
-                    "No se pudo insertar los datos"
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                return "Excepción: ${e.message}"
-            }
-        }
-
-        override fun onPostExecute(result: String) {
-            Toast.makeText(applicationContext, result, Toast.LENGTH_SHORT).show()
-        }
+    private fun Ir_a_Registrarse() {
+        val intent = Intent(this, registrarse::class.java)
+        startActivity(intent)
     }
 }
+
+
+
