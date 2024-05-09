@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -27,24 +28,19 @@ class Iniciar_session : AppCompatActivity() {
             insets
         }
 
-        findViewById<Button>(R.id.button).setOnClickListener {
-            val correo_electronico = findViewById<EditText>(R.id.editTextTextPersonName).text.toString()
-            val contraseña = findViewById<EditText>(R.id.editTextTextPersonName2).text.toString()
+        findViewById<Button>(R.id.botonIniciarSesion).setOnClickListener {
+            val correo_electronico = findViewById<EditText>(R.id.CorreoInicioSesion).text.toString()
+            val contraseña = findViewById<EditText>(R.id.contreaseñaInicioSesion).text.toString()
 
             InsertarDatos().execute(correo_electronico, contraseña)
         }
 
-        val btn1: Button = findViewById(R.id.buttonLoginHome)
+        val btn1: Button = findViewById(R.id.botonIniciarSesion)
         btn1.setOnClickListener {
             val intent: Intent = Intent(this, Iniciar_session::class.java)
             startActivity(intent)
         }
 
-        val btn2: Button = findViewById(R.id.buttonCheckHome)
-        btn2.setOnClickListener {
-            val intent: Intent = Intent(this, registro::class.java)
-            startActivity(intent)
-        }
     }
 
     private inner class InsertarDatos : AsyncTask<String, Void, String>() {
@@ -56,7 +52,7 @@ class Iniciar_session : AppCompatActivity() {
                 Class.forName("com.mysql.jdbc.Driver")
                 val conn: Connection = DriverManager.getConnection("jdbc:mysql://ec2-54-90-34-74.compute-1.amazonaws.com:3306/fanlink", "usuario", "12345")
 
-                val query = "INSERT INTO usuarios (nombre, email) VALUES (?,?)"
+                val query = "INSERT INTO usuarios (correo_electronico, contraseña) VALUES (?,?)"
                 val statement: PreparedStatement = conn.prepareStatement(query)
                 statement.setString(1, correo_electronico)
                 statement.setString(2, contraseña)
