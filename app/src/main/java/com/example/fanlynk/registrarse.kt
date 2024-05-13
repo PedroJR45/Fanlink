@@ -30,7 +30,8 @@ class registrarse : AppCompatActivity() {
             val name = findViewById<EditText>(R.id.textoCorreoRegistro).text.toString()
             val email = findViewById<EditText>(R.id.usuarioRegistro).text.toString()
             val password = findViewById<EditText>(R.id.textConfContraseñaRegistro).text.toString()
-            val confirmPassword = findViewById<EditText>(R.id.textContraseñaRegistro).text.toString()
+            val confirmPassword =
+                findViewById<EditText>(R.id.textContraseñaRegistro).text.toString()
 
             if (password == confirmPassword) {
                 InsertarUsuario().execute(name, email, password)
@@ -48,9 +49,11 @@ class registrarse : AppCompatActivity() {
 
             return try {
                 Class.forName("com.mysql.jdbc.Driver")
-                val conn: Connection = DriverManager.getConnection("localhost/fanlink", "usuario", "12345")
+                val conn: Connection =
+                    DriverManager.getConnection("localhost/fanlink", "usuario", "12345")
 
-                val query = "INSERT INTO usuario (nombre, correo_electronico, contraseña) VALUES (?, ?, ?)"
+                val query =
+                    "INSERT INTO usuario (nombre, correo_electronico, contraseña) VALUES (?, ?, ?)"
                 val statement: PreparedStatement = conn.prepareStatement(query)
                 statement.setString(1, name)
                 statement.setString(2, email)
@@ -68,11 +71,16 @@ class registrarse : AppCompatActivity() {
 
         override fun onPostExecute(result: Boolean) {
             if (result) {
-                Toast.makeText(applicationContext, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    "Usuario registrado correctamente",
+                    Toast.LENGTH_SHORT
+                ).show()
                 val intent = Intent(applicationContext, Iniciar_session::class.java)
                 startActivity(intent)
             } else {
-                Toast.makeText(applicationContext, "Error al registrar usuario", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Error al registrar usuario", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
