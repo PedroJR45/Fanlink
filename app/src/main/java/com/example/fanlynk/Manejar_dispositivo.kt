@@ -92,7 +92,7 @@ class BluetoothManager(private val context: Context) {
 
     fun connectToDevice(device: BluetoothDevice): Boolean {
         return try {
-            val uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB") // UUID para el servicio SPP
+            val uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
             bluetoothSocket = device.createRfcommSocketToServiceRecord(uuid)
             bluetoothSocket?.connect()
             true
