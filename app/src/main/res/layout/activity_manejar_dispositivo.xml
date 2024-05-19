@@ -5,7 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Manejar_dispositivo">
+    tools:context=".Manejar_dispositivo"
+    android:requestLegacyExternalStorage="true"
+    android:usesCleartextTraffic="true">
 
     <View
         android:id="@+id/fondoHome"
