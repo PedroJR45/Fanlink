@@ -15,7 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class Vincular : AppCompatActivity() {
+class vincular : AppCompatActivity() {
 
     private lateinit var bluetoothAdapter: BluetoothAdapter
     private lateinit var listDispo: ListView

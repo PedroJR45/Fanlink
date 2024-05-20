@@ -16,7 +16,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class Sincronizar : AppCompatActivity() {
+class sincronizar : AppCompatActivity() {
 
     private lateinit var bluetoothAdapter: BluetoothAdapter
     private lateinit var listaDispositivos: ListView
