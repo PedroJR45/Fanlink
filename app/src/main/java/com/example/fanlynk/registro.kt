@@ -12,6 +12,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class registro : AppCompatActivity() {
+    object RegistroData {
+        val registros: MutableList<Registro> = mutableListOf()
+    }
+
+    data class Registro(val correo: String, val usuario: String, val contraseña: String)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -29,6 +34,8 @@ class registro : AppCompatActivity() {
             val confContraseña = findViewById<EditText>(R.id.textConfContraseñaRegistro).text.toString()
 
             if (contraseña == confContraseña) {
+                val registro = Registro(correo, usuario, contraseña)
+                RegistroData.registros.add(registro)
                 mostrarMensaje("Registrado")
 
                 val intent = Intent(this, Manejar_dispositivo::class.java)
