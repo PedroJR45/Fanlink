@@ -26,10 +26,15 @@ class Iniciar_session : AppCompatActivity() {
             val correo_electronico = findViewById<EditText>(R.id.CorreoInicioSesion).text.toString()
             val contraseña = findViewById<EditText>(R.id.contreaseñaInicioSesion).text.toString()
 
-            mostrarMensaje("Datos insertados correctamente")
+            val registroEncontrado = registro.RegistroData.registros.find { it.correo == correo_electronico && it.contraseña == contraseña }
 
-            val intent = Intent(this, Manejar_dispositivo::class.java)
-            startActivity(intent)
+            if (registroEncontrado != null) {
+                mostrarMensaje("Inicio de sesión exitoso")
+                val intent = Intent(this, Manejar_dispositivo::class.java)
+                startActivity(intent)
+            } else {
+                mostrarMensaje("Correo o contraseña incorrectos")
+            }
         }
 
         findViewById<TextView>(R.id.textoInicioSesion).setOnClickListener {
