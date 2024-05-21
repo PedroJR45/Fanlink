@@ -26,8 +26,7 @@ class Iniciar_session : AppCompatActivity() {
             val correo_electronico = findViewById<EditText>(R.id.CorreoInicioSesion).text.toString()
             val contraseña = findViewById<EditText>(R.id.contreaseñaInicioSesion).text.toString()
 
-            if ((correo_electronico == RegistroData.correo && contraseña == RegistroData.contraseña) ||
-                    (correo_electronico == "a@gmail.com" && contraseña == "12345"))  {
+            if (correo_electronico == RegistroData.correo && contraseña == RegistroData.contraseña) {
                 mostrarMensaje("Inicio de sesión exitoso")
                 val intent = Intent(this, Manejar_dispositivo::class.java)
                 startActivity(intent)
