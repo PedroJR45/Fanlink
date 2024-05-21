@@ -26,7 +26,7 @@ class Iniciar_session : AppCompatActivity() {
             val correo_electronico = findViewById<EditText>(R.id.CorreoInicioSesion).text.toString()
             val contraseña = findViewById<EditText>(R.id.contreaseñaInicioSesion).text.toString()
 
-            val registroEncontrado = registro.RegistroData.registros.find { it.correo == correo_electronico && it.contraseña == contraseña }
+            val registroEncontrado = RegistroData.registros.find { it.correo == correo_electronico && it.contraseña == contraseña }
 
             if (registroEncontrado != null) {
                 mostrarMensaje("Inicio de sesión exitoso")

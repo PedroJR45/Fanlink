@@ -50,18 +50,26 @@ class Manejar_dispositivo : AppCompatActivity() {
         val buttons = listOf<Button>(
             findViewById(R.id.button),
             findViewById(R.id.button2),
-            findViewById(R.id.button3),
-            findViewById(R.id.button4)
+            findViewById(R.id.button3)
         )
+
 
         buttons.forEach { button ->
             button.setOnClickListener {
-                sendBluetoothSignal("TOGGLE")
+                if (bluetoothSocket != null && bluetoothSocket!!.isConnected) {
+                    sendBluetoothSignal("TOGGLE")
+                } else {
+                    Toast.makeText(this, "No hay ningún dispositivo conectado", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
         findViewById<ImageView>(R.id.imageEncendidoApagado).setOnClickListener {
-            sendBluetoothSignal("TOGGLE")
+            if (bluetoothSocket != null && bluetoothSocket!!.isConnected) {
+                sendBluetoothSignal("TOGGLE")
+            } else {
+                Toast.makeText(this, "No hay ningún dispositivo conectado", Toast.LENGTH_SHORT).show()
+            }
         }
 
         connectToBluetoothDevice()
