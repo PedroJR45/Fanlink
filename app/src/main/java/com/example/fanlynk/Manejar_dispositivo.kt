@@ -46,11 +46,13 @@ class Manejar_dispositivo : AppCompatActivity() {
             val intent = Intent(this, vincular::class.java)
             startActivity(intent)
         }
+        findViewById<Button>(R.id.buttonLogout).setOnClickListener {
+            val intent = Intent(this, Iniciar_session::class.java)
+            startActivity(intent)
+        }
 
         val buttons = listOf<Button>(
             findViewById(R.id.button),
-            findViewById(R.id.button2),
-            findViewById(R.id.button3)
         )
 
 
