@@ -23,7 +23,7 @@ class Iniciar_session : AppCompatActivity() {
         val txtemail: TextView = findViewById(R.id.CorreoInicioSesion)
         val txtpass: TextView = findViewById(R.id.contreaseñaInicioSesion)
         btningresar.setOnClickListener() {
-            //ejemlo
+
 
         }
     }
