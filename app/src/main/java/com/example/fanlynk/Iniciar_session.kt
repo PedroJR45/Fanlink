@@ -22,28 +22,5 @@ class Iniciar_session : AppCompatActivity() {
             insets
         }
 
-        findViewById<Button>(R.id.botonIniciarSesion).setOnClickListener {
-            val correo_electronico = findViewById<EditText>(R.id.CorreoInicioSesion).text.toString()
-            val contraseña = findViewById<EditText>(R.id.contreaseñaInicioSesion).text.toString()
-
-            val registroEncontrado = RegistroData.registros.find { it.correo == correo_electronico && it.contraseña == contraseña }
-
-            if (registroEncontrado != null) {
-                mostrarMensaje("Inicio de sesión exitoso")
-                val intent = Intent(this, Manejar_dispositivo::class.java)
-                startActivity(intent)
-            } else {
-                mostrarMensaje("Correo o contraseña incorrectos")
-            }
-        }
-
-        findViewById<TextView>(R.id.textoInicioSesion).setOnClickListener {
-            val intent = Intent(this, registro::class.java)
-            startActivity(intent)
-        }
-    }
-
-    private fun mostrarMensaje(mensaje: String) {
-        Toast.makeText(applicationContext, mensaje, Toast.LENGTH_SHORT).show()
     }
 }

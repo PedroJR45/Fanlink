@@ -1,53 +1,49 @@
 package com.example.fanlynk
 
 import android.os.Bundle
-import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-class Registrarse : AppCompatActivity() {
+class registrarse: AppCompatActivity() {
 
-    private lateinit var editTextNombre: EditText
-    private lateinit var editTextCorreo: EditText
-    private lateinit var editTextContrasena: EditText
-    private lateinit var buttonRegistrar: Button
-    private lateinit var databaseHelper: SLQliteConexion
+    private lateinit var editTextName: EditText
+    private lateinit var editTextEmail: EditText
+    private lateinit var editTextPassword: EditText
+    private lateinit var buttonRegister: Button
+    private lateinit var db: SLQliteConexion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
 
-        editTextNombre = findViewById(R.id.usuarioRegistro)
-        editTextCorreo = findViewById(R.id.textoCorreoRegistro)
-        editTextContrasena = findViewById(R.id.textContraseñaRegistro)
-        buttonRegistrar = findViewById(R.id.btnRegistrarse)
+        editTextName = findViewById(R.id.usuarioRegistro)
+        editTextEmail = findViewById(R.id.textoCorreoRegistro)
+        editTextPassword = findViewById(R.id.textContraseñaRegistro)
+        buttonRegister = findViewById(R.id.btnRegistrarse)
 
-        databaseHelper = SLQliteConexion(this)
+        db = SLQliteConexion(this)
 
-        buttonRegistrar.setOnClickListener {
-            val nombre = editTextNombre.text.toString().trim()
-            val correo = editTextCorreo.text.toString().trim()
-            val contrasena = editTextContrasena.text.toString().trim()
+        buttonRegister.setOnClickListener {
+            val name = editTextName.text.toString().trim()
+            val email = editTextEmail.text.toString().trim()
+            val password = editTextPassword.text.toString().trim()
 
-            if (TextUtils.isEmpty(nombre) || TextUtils.isEmpty(correo) || TextUtils.isEmpty(contrasena)) {
-                Toast.makeText(this@Registrarse, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
-            } else if (databaseHelper.checkUser(correo)) {
-                Toast.makeText(this@Registrarse, "El correo electrónico ya está registrado", Toast.LENGTH_SHORT).show()
+            if (db.checkUser(email)) {
+                Toast.makeText(this, "Usuario ya existe", Toast.LENGTH_SHORT).show()
             } else {
-                val result = databaseHelper.addUser(nombre, correo, contrasena)
-                if (result > 0) {
-                    Toast.makeText(this@Registrarse, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                val result = db.addUser(name, email, password)
+                if (result != -1L) {
+                    Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this@Registrarse, "Registro fallido", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error al registrar usuario", Toast.LENGTH_SHORT).show()
                 }
             }
         }
-
-
-        }
     }
+}
+
 
 
 

@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class SLQliteConexion extends SQLiteOpenHelper {
-
     private static final String DATABASE_NAME = "fanlink.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -24,7 +23,7 @@ public class SLQliteConexion extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // crear tabla usuarios
+        // Crear tabla usuarios
         String CREATE_USUARIO_TABLE = "CREATE TABLE " + TABLE_USUARIO + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUMN_NOMBRE + " TEXT,"
@@ -35,7 +34,6 @@ public class SLQliteConexion extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USUARIO);
         onCreate(db);
     }
@@ -48,27 +46,25 @@ public class SLQliteConexion extends SQLiteOpenHelper {
         values.put(COLUMN_CORREO_ELECTRONICO, correoElectronico);
         values.put(COLUMN_CONTRASENA, contrasena);
 
-        // Inserting Row
+        // Insertar fila
         long result = db.insert(TABLE_USUARIO, null, values);
-        db.close(); // Closing database connection
+        db.close(); // Cerrar conexión a la base de datos
         return result;
     }
 
     // Revisar si existe el dato, usando el correo
     public boolean checkUser(String correoElectronico) {
-        String[] columns = {
-                COLUMN_ID
-        };
+        String[] columns = { COLUMN_ID };
         SQLiteDatabase db = this.getReadableDatabase();
         String selection = COLUMN_CORREO_ELECTRONICO + " = ?";
-        String[] selectionArgs = {correoElectronico};
+        String[] selectionArgs = { correoElectronico };
 
-        Cursor cursor = db.query(TABLE_USUARIO, columns, selection, selectionArgs,
-                null, null, null);
+        Cursor cursor = db.query(TABLE_USUARIO, columns, selection, selectionArgs, null, null, null);
         int cursorCount = cursor.getCount();
         cursor.close();
         db.close();
         return cursorCount > 0;
     }
 }
+
 

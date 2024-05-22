@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun Ir_a_Registrarse() {
-        val intent = Intent(this, Registrarse::class.java)
+        val intent = Intent(this, registrarse::class.java)
         startActivity(intent)
     }
 
