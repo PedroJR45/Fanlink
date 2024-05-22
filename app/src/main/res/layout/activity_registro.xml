@@ -31,13 +31,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registro"
-        app:layout_constraintVertical_bias="0.324" />
+        app:layout_constraintVertical_bias="0.515" />
 
     <Button
         android:id="@+id/btnRegistrarse"
         android:layout_width="212dp"
         android:layout_height="46dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="48dp"
         android:backgroundTint="#311A4C73"
         android:text="Registrarse"
         app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
@@ -56,40 +56,17 @@
         app:layout_constraintTop_toBottomOf="@+id/btnRegistrarse" />
 
     <EditText
-        android:id="@+id/textConfContraseñaRegistro"
+        android:id="@+id/textContraseñaRegistro"
         android:layout_width="295dp"
         android:layout_height="41dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:drawableTint="#532E2E"
         android:ems="10"
-        android:hint="Confirma tu contraseña..."
+        android:hint="Escribe tu contraseña..."
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
         app:layout_constraintTop_toBottomOf="@+id/usuarioRegistro" />
-
-    <ImageView
-        android:id="@+id/imgContraseñaRegistro2"
-        android:layout_width="40dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/textContraseñaRegistro"
-        app:layout_constraintStart_toStartOf="@+id/panelRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/imgContraseñaRegistro"
-        app:srcCompat="@drawable/contrase_a" />
-
-    <EditText
-        android:id="@+id/textContraseñaRegistro"
-        android:layout_width="296dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
-        android:drawableTint="#532E2E"
-        android:ems="10"
-        android:hint="Confirma tu contraseña..."
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/textConfContraseñaRegistro" />
 
     <ImageView
         android:id="@+id/imgUserRegistro"
@@ -106,7 +83,7 @@
         android:layout_width="40dp"
         android:layout_height="33dp"
         android:layout_marginTop="18dp"
-        app:layout_constraintEnd_toStartOf="@+id/textConfContraseñaRegistro"
+        app:layout_constraintEnd_toStartOf="@+id/textContraseñaRegistro"
         app:layout_constraintStart_toStartOf="@+id/panelRegistro"
         app:layout_constraintTop_toBottomOf="@+id/imgUserRegistro"
         app:srcCompat="@drawable/contrase_a" />
