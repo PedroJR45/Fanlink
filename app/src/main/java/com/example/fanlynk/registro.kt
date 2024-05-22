@@ -56,4 +56,5 @@ class registro : AppCompatActivity() {
     private fun mostrarMensaje(mensaje: String) {
         Toast.makeText(applicationContext, mensaje, Toast.LENGTH_SHORT).show()
     }
+    //bajar cambios
 }
