@@ -17,6 +17,8 @@ public class SLQliteConexion extends SQLiteOpenHelper {
     private static final String COLUMN_CORREO_ELECTRONICO = "correo_electronico";
     private static final String COLUMN_CONTRASENA = "contrasena";
 
+    private SQLiteDatabase db;
+
     public SLQliteConexion(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -38,33 +40,43 @@ public class SLQliteConexion extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Método para abrir la base de datos
+    public void open() {
+        if (db == null || !db.isOpen()) {
+            db = this.getWritableDatabase();
+        }
+    }
+
+    // Método para cerrar la base de datos
+    public void close() {
+        if (db != null && db.isOpen()) {
+            db.close();
+        }
+    }
+
     // Insertar datos
     public long addUser(String nombre, String correoElectronico, String contrasena) {
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOMBRE, nombre);
         values.put(COLUMN_CORREO_ELECTRONICO, correoElectronico);
         values.put(COLUMN_CONTRASENA, contrasena);
 
         // Insertar fila
-        long result = db.insert(TABLE_USUARIO, null, values);
-        db.close(); // Cerrar conexión a la base de datos
-        return result;
+        return db.insert(TABLE_USUARIO, null, values);
     }
 
     // Revisar si existe el dato, usando el correo
     public boolean checkUser(String correoElectronico) {
         String[] columns = { COLUMN_ID };
-        SQLiteDatabase db = this.getReadableDatabase();
         String selection = COLUMN_CORREO_ELECTRONICO + " = ?";
         String[] selectionArgs = { correoElectronico };
 
         Cursor cursor = db.query(TABLE_USUARIO, columns, selection, selectionArgs, null, null, null);
         int cursorCount = cursor.getCount();
         cursor.close();
-        db.close();
         return cursorCount > 0;
     }
 }
+
 
 
