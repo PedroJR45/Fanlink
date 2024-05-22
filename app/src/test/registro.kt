@@ -27,7 +27,7 @@ class registro : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+//intento de bajar estos cambios
         findViewById<Button>(R.id.btnRegistrarse).setOnClickListener {
             val correo = findViewById<EditText>(R.id.textoCorreoRegistro).text.toString()
             val usuario = findViewById<EditText>(R.id.usuarioRegistro).text.toString()
