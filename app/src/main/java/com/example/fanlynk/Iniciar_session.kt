@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class Iniciar_session : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
@@ -22,32 +25,29 @@ class Iniciar_session : AppCompatActivity() {
         val btningresar: Button = findViewById(R.id.botonIniciarSesion)
         val txtemail: TextView = findViewById(R.id.CorreoInicioSesion)
         val txtpass: TextView = findViewById(R.id.contreaseñaInicioSesion)
+        firebaseAuth= Firebase.auth
         btningresar.setOnClickListener() {
-
-
+            singIn(txtemail.text.toString(),txtpass.text.toString())
         }
     }
 
-    /*private fun singIn(email: String, password: String) {
+    private fun singIn(email: String, password: String) {
 
-        firebaseAuth.singInWithEmailAndPassword(email, password)
+        firebaseAuth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = firebaseAuth.currentUser
-                    Toast.makeText(baseContext, user?.uid.toString(), Toast.LENGTH_SHORT.show())
+                    Toast.makeText(baseContext, user?.uid.toString(), Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(
                         baseContext,
                         "Error de Email y/o contraseña",
-                        Toast.LENGTH_SHORT.show()
-                    )
-
+                        Toast.LENGTH_SHORT).show()
 
                 }
             }
     }
 
-     */
 }
 
 
