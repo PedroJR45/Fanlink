@@ -2,6 +2,7 @@ package com.example.fanlynk
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -10,38 +11,44 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
 
 class Iniciar_session : AppCompatActivity() {
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var authStateListener: FirebaseAuth.AuthStateListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_iniciar_sesion)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.Login)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        val btningresar: Button = findViewById(R.id.botonIniciarSesion)
+        val txtemail: TextView = findViewById(R.id.CorreoInicioSesion)
+        val txtpass: TextView = findViewById(R.id.contreaseñaInicioSesion)
+        btningresar.setOnClickListener() {
+
         }
+    }
 
-        findViewById<Button>(R.id.botonIniciarSesion).setOnClickListener {
-            val correo_electronico = findViewById<EditText>(R.id.CorreoInicioSesion).text.toString()
-            val contraseña = findViewById<EditText>(R.id.contreaseñaInicioSesion).text.toString()
+    /*private fun singIn(email: String, password: String) {
 
-            if (correo_electronico == RegistroData.correo && contraseña == RegistroData.contraseña) {
-                mostrarMensaje("Inicio de sesión exitoso")
-                val intent = Intent(this, Manejar_dispositivo::class.java)
-                startActivity(intent)
-            } else {
-                mostrarMensaje("Correo o contraseña incorrectos")
+        firebaseAuth.singInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = firebaseAuth.currentUser
+                    Toast.makeText(baseContext, user?.uid.toString(), Toast.LENGTH_SHORT.show())
+                } else {
+                    Toast.makeText(
+                        baseContext,
+                        "Error de Email y/o contraseña",
+                        Toast.LENGTH_SHORT.show()
+                    )
+
+
+                }
             }
-        }
-
-        findViewById<TextView>(R.id.textoInicioSesion).setOnClickListener {
-            val intent = Intent(this, registro::class.java)
-            startActivity(intent)
-        }
     }
 
-    private fun mostrarMensaje(mensaje: String) {
-        Toast.makeText(applicationContext, mensaje, Toast.LENGTH_SHORT).show()
-    }
+     */
 }
+
+
+
+

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "592212276077",
+    "project_id": "fanlink-b70f8",
+    "storage_bucket": "fanlink-b70f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592212276077:android:f9c203c3f73686a61ee064",
+        "android_client_info": {
+          "package_name": "com.example.fanlynk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT6SpM-asVIQpXXM9MzKbHG3wk6sYcMLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
