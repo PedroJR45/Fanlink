@@ -53,10 +53,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/listViewDevices"
+        android:id="@+id/listDispo"
         android:layout_width="409dp"
         android:layout_height="519dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 
