@@ -25,9 +25,14 @@ class Iniciar_session : AppCompatActivity() {
         val btningresar: Button = findViewById(R.id.botonIniciarSesion)
         val txtemail: TextView = findViewById(R.id.CorreoInicioSesion)
         val txtpass: TextView = findViewById(R.id.contreaseñaInicioSesion)
+        val textCuenta: TextView = findViewById(R.id.textoInicioSesion)
         firebaseAuth= Firebase.auth
         btningresar.setOnClickListener() {
             singIn(txtemail.text.toString(),txtpass.text.toString())
+        }
+        textCuenta.setOnClickListener {
+            val intent = Intent(this, registrarse::class.java)
+            startActivity(intent)
         }
     }
 
@@ -37,7 +42,10 @@ class Iniciar_session : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = firebaseAuth.currentUser
-                    Toast.makeText(baseContext, user?.uid.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Inicio exitoso.", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, Manejar_dispositivo::class.java)
+                    startActivity(intent)
+                    finish() // Opcional: cierra la actividad actual si no deseas que el usuario vuelva atrás
                 } else {
                     Toast.makeText(
                         baseContext,
@@ -45,11 +53,8 @@ class Iniciar_session : AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
 
                 }
+
             }
     }
 
 }
-
-
-
-

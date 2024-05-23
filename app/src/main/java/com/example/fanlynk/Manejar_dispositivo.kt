@@ -17,6 +17,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import java.io.IOException
 import java.util.*
+import androidx.appcompat.app.AlertDialog
+
 
 class Manejar_dispositivo : AppCompatActivity() {
 
@@ -121,4 +123,21 @@ class Manejar_dispositivo : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Cerrar aplicación")
+        builder.setMessage("¿Estás seguro de que quieres cerrar la aplicación?")
+        builder.setPositiveButton("Sí") { dialog, _ ->
+            finishAffinity() // Cierra la actividad actual y todas las actividades asociadas
+            super.onBackPressed() // Llama al método onBackPressed de la clase base después de cerrar la actividad
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss() // Cierra el diálogo sin hacer nada
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+
+
 }

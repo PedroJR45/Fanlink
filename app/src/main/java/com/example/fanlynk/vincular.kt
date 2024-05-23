@@ -36,6 +36,7 @@ class vincular : AppCompatActivity() {
         findViewById<TextView>(R.id.textView3).setOnClickListener {
             val intent = Intent(this, Manejar_dispositivo::class.java)
             startActivity(intent)
+            finish() // Opcional: cierra la actividad actual si no deseas que el usuario vuelva atrás
         }
 
         mostrarDispositivosVinculados()

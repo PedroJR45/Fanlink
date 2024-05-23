@@ -22,11 +22,12 @@ class MainActivity : AppCompatActivity() {
         btn1.setOnClickListener {
             val intent: Intent = Intent(this, Iniciar_session::class.java)
             startActivity(intent)
+
         }
 
         val btn2: Button = findViewById(R.id.buttonCheckHome)
         btn2.setOnClickListener {
-            val intent: Intent = Intent(this, registro::class.java)
+            val intent: Intent = Intent(this, registrarse::class.java)
             startActivity(intent)
         }
     }
