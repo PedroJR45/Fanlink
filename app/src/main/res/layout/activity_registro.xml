@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="@+id/panelRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/textContraseñaRegistro" />
+        app:layout_constraintTop_toBottomOf="@+id/textconfigurarContraseñaRegistro" />
 
     <TextView
         android:id="@+id/textCuenta"
@@ -56,66 +56,56 @@
         app:layout_constraintTop_toBottomOf="@+id/btnRegistrarse" />
 
     <EditText
-        android:id="@+id/textConfContraseñaRegistro"
+        android:id="@+id/textContraseñaRegistro"
         android:layout_width="295dp"
         android:layout_height="41dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:drawableTint="#532E2E"
         android:ems="10"
         android:hint="Confirma tu contraseña..."
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/usuarioRegistro" />
+        app:layout_constraintTop_toBottomOf="@+id/textoCorreoRegistro" />
 
     <ImageView
         android:id="@+id/imgContraseñaRegistro2"
         android:layout_width="40dp"
         android:layout_height="33dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/textContraseñaRegistro"
+        android:layout_marginTop="22dp"
+        app:layout_constraintEnd_toStartOf="@+id/textconfigurarContraseñaRegistro"
         app:layout_constraintStart_toStartOf="@+id/panelRegistro"
         app:layout_constraintTop_toBottomOf="@+id/imgContraseñaRegistro"
         app:srcCompat="@drawable/contrase_a" />
 
     <EditText
-        android:id="@+id/textContraseñaRegistro"
+        android:id="@+id/textconfigurarContraseñaRegistro"
         android:layout_width="296dp"
         android:layout_height="38dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:drawableTint="#532E2E"
         android:ems="10"
         android:hint="Confirma tu contraseña..."
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/textConfContraseñaRegistro" />
-
-    <ImageView
-        android:id="@+id/imgUserRegistro"
-        android:layout_width="43dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/usuarioRegistro"
-        app:layout_constraintStart_toStartOf="@+id/panelRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/imgCorreoRegistro"
-        app:srcCompat="@drawable/usuario" />
+        app:layout_constraintTop_toBottomOf="@+id/textContraseñaRegistro" />
 
     <ImageView
         android:id="@+id/imgContraseñaRegistro"
         android:layout_width="40dp"
         android:layout_height="33dp"
-        android:layout_marginTop="18dp"
-        app:layout_constraintEnd_toStartOf="@+id/textConfContraseñaRegistro"
+        android:layout_marginTop="22dp"
+        app:layout_constraintEnd_toStartOf="@+id/textconfigurarContraseñaRegistro"
         app:layout_constraintStart_toStartOf="@+id/panelRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/imgUserRegistro"
+        app:layout_constraintTop_toBottomOf="@+id/imgCorreoRegistro"
         app:srcCompat="@drawable/contrase_a" />
 
     <ImageView
         android:id="@+id/imgCorreoRegistro"
         android:layout_width="43dp"
         android:layout_height="40dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="42dp"
         app:layout_constraintEnd_toStartOf="@+id/textoCorreoRegistro"
         app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="@+id/panelRegistro"
@@ -152,26 +142,12 @@
         android:id="@+id/textoCorreoRegistro"
         android:layout_width="296dp"
         android:layout_height="41dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="42dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Escribe tu correo..."
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
         app:layout_constraintTop_toTopOf="@+id/panelRegistro" />
-
-    <EditText
-        android:id="@+id/usuarioRegistro"
-        android:layout_width="295dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#1A4C73"
-        android:ems="10"
-        android:hint="Escribe tu nombre..."
-        android:hyphenationFrequency="normal"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="@+id/panelRegistro"
-        app:layout_constraintTop_toBottomOf="@+id/textoCorreoRegistro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
