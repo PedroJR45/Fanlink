@@ -25,38 +25,82 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="250dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="148dp"
+        android:layout_width="360dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="144dp"
         android:text="Sincronizar dispositivo nuevo "
         android:textColor="#0B67AC"
         android:textSize="20sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.229"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="240dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="252dp"
-        android:text="Dispositivos disponibles"
-        android:textColor="#0B67AC"
-        android:textSize="14sp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.216"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fondoHome" />
-
     <ListView
         android:id="@+id/listaDispositivos"
-        android:layout_width="382dp"
-        android:layout_height="408dp"
+        android:layout_width="377dp"
+        android:layout_height="332dp"
+        android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.735"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/listaDispositivos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/idBtnOnBT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="ACTIVAR" />
+
+            <Button
+                android:id="@+id/idBtnOffBT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DESACTIVAR" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/idBtnDispBT"
+                android:layout_width="368dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DISPOSITIVOS BT" />
+
+            <Spinner
+                android:id="@+id/idSpinDisp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/idBtnConect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CONECTAR" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
