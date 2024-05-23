@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -16,7 +14,7 @@
         android:theme="@style/Theme.Fanlynk"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".Manejar_dispositivo"
             android:exported="false" />
         <activity
             android:name=".vincular"
@@ -26,12 +24,12 @@
             android:exported="false" />
         <activity
             android:name=".Iniciar_session"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".registrarse"
             android:exported="false" />
         <activity
-            android:name=".Manejar_dispositivo"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

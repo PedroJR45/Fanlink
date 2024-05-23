@@ -1,87 +1,65 @@
 package com.example.fanlynk
 
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.PreparedStatement
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class registrarse : AppCompatActivity() {
+    private lateinit var firebaseAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_registro)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.Login)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        val buttonRegister = findViewById<Button>(R.id.btnRegistrarse)
-        buttonRegister.setOnClickListener {
-            val name = findViewById<EditText>(R.id.textoCorreoRegistro).text.toString()
-            val email = findViewById<EditText>(R.id.usuarioRegistro).text.toString()
-            val password = findViewById<EditText>(R.id.textConfContraseñaRegistro).text.toString()
-            val confirmPassword =
-                findViewById<EditText>(R.id.textContraseñaRegistro).text.toString()
+        // Inicializar Firebase Auth
+        firebaseAuth = FirebaseAuth.getInstance()
 
-            if (password == confirmPassword) {
-                InsertarUsuario().execute(name, email, password)
+        val btnRegistrarse: Button = findViewById(R.id.btnRegistrarse)
+        val correoEditText: EditText = findViewById(R.id.textoCorreoRegistro)
+        val contraseñaEditText: EditText = findViewById(R.id.textContraseñaRegistro)
+        val confirmarContraseñaEditText: EditText = findViewById(R.id.textconfigurarContraseñaRegistro)
+        val textCuenta: TextView = findViewById(R.id.textCuenta)
+
+
+        btnRegistrarse.setOnClickListener {
+            val correo = correoEditText.text.toString()
+            val contraseña = contraseñaEditText.text.toString()
+            val confirmarContraseña = confirmarContraseñaEditText.text.toString()
+
+            if (contraseña == confirmarContraseña) {
+                registrarUsuario(correo, contraseña)
             } else {
                 Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
             }
         }
-    }
-
-    private inner class InsertarUsuario : AsyncTask<String, Void, Boolean>() {
-        override fun doInBackground(vararg params: String?): Boolean {
-            val name = params[0]
-            val email = params[1]
-            val password = params[2]
-
-            return try {
-                Class.forName("com.mysql.jdbc.Driver")
-                val conn: Connection =
-                    DriverManager.getConnection("localhost/fanlink", "usuario", "12345")
-
-                val query =
-                    "INSERT INTO usuario (nombre, correo_electronico, contraseña) VALUES (?, ?, ?)"
-                val statement: PreparedStatement = conn.prepareStatement(query)
-                statement.setString(1, name)
-                statement.setString(2, email)
-                statement.setString(3, password)
-
-                statement.executeUpdate()
-                conn.close()
-
-                true
-            } catch (e: Exception) {
-                e.printStackTrace()
-                false
-            }
-        }
-
-        override fun onPostExecute(result: Boolean) {
-            if (result) {
-                Toast.makeText(
-                    applicationContext,
-                    "Usuario registrado correctamente",
-                    Toast.LENGTH_SHORT
-                ).show()
-                val intent = Intent(applicationContext, Iniciar_session::class.java)
-                startActivity(intent)
-            } else {
-                Toast.makeText(applicationContext, "Error al registrar usuario", Toast.LENGTH_SHORT)
-                    .show()
-            }
+        textCuenta.setOnClickListener {
+            val intent = Intent(this, Iniciar_session::class.java)
+            startActivity(intent)
         }
     }
+
+    private fun registrarUsuario(correo: String, contraseña: String) {
+        firebaseAuth.createUserWithEmailAndPassword(correo, contraseña)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Registro exitoso
+                    val user: FirebaseUser? = firebaseAuth.currentUser
+                    Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, Manejar_dispositivo::class.java)
+                    startActivity(intent)
+                    finish() // Opcional: cierra la actividad actual si no deseas que el usuario vuelva atrás
+                    // Aquí puedes guardar información adicional del usuario en la base de datos si es necesario
+                } else {
+                    // Registro fallido
+                    Toast.makeText(this, "Error al registrar: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
 }

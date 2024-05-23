@@ -1,22 +1,24 @@
 package com.example.fanlynk
 
+import android.Manifest
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import android.widget.Toast
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.PreparedStatement
-import java.sql.ResultSet
 
 class vincular : AppCompatActivity() {
-    private lateinit var listViewDevices: ListView
-    private lateinit var arrayAdapter: ArrayAdapter<String>
-    private lateinit var conn: Connection
+
+    private lateinit var bluetoothAdapter: BluetoothAdapter
+    private lateinit var listDispo: ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,50 +30,37 @@ class vincular : AppCompatActivity() {
             insets
         }
 
-        listViewDevices = findViewById(R.id.listViewDevices)
-        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1)
-        listViewDevices.adapter = arrayAdapter
-        listViewDevices.setOnItemClickListener { _, _, position, _ ->
-            val deviceName = arrayAdapter.getItem(position)
-            connectToDevice(deviceName)
+        listDispo = findViewById(R.id.listDispo)
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+
+        findViewById<TextView>(R.id.textView3).setOnClickListener {
+            val intent = Intent(this, Manejar_dispositivo::class.java)
+            startActivity(intent)
+            finish() // Opcional: cierra la actividad actual si no deseas que el usuario vuelva atrás
         }
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver")
-            conn = DriverManager.getConnection("localhost/fanlink", "usuario", "12345")
-            loadDevicesFromDatabase()
-
-            if (arrayAdapter.count > 0) {
-                val firstDeviceName = arrayAdapter.getItem(0)
-                connectToDevice(firstDeviceName)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Toast.makeText(this, "Error al conectar a la base de datos", Toast.LENGTH_SHORT).show()
-        }
+        mostrarDispositivosVinculados()
     }
 
-    private fun loadDevicesFromDatabase() {
-        val query = "SELECT nombre_dispositivo FROM dispositivo"
-        val statement: PreparedStatement = conn.prepareStatement(query)
-        val resultSet: ResultSet = statement.executeQuery()
-        while (resultSet.next()) {
-            val deviceName = resultSet.getString("nombre_dispositivo")
-            arrayAdapter.add(deviceName)
+    private fun mostrarDispositivosVinculados() {
+        val dispositivosVinculados: Set<BluetoothDevice> = bluetoothAdapter.bondedDevices
+        val nombresDispositivos = dispositivosVinculados.map { if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.BLUETOOTH_CONNECT
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
         }
-    }
+            it.name ?: "Dispositivo Desconocido" }
 
-    private fun connectToDevice(deviceName: String?) {
-        // Implementa la lógica para conectarte al dispositivo seleccionado aquí
-        Toast.makeText(this, "Conectando a $deviceName", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        try {
-            conn.close()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, nombresDispositivos)
+        listDispo.adapter = adapter
     }
 }
