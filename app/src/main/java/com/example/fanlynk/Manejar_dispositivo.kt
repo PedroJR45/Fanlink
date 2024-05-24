@@ -45,14 +45,11 @@ class Manejar_dispositivo : AppCompatActivity() {
             startActivity(intent)
         }
 
-//        findViewById<ImageView>(R.id.imgAgregar).setOnClickListener {
-//            val intent = Intent(this, sincronizar::class.java)
-//            startActivity(intent)
-//        }
 
         findViewById<ImageView>(R.id.imgVincular).setOnClickListener {
             val intent = Intent(this, vincular::class.java)
             startActivity(intent)
+//            sirve
         }
         findViewById<Button>(R.id.buttonLogout).setOnClickListener {
             val intent = Intent(this, Iniciar_session::class.java)
