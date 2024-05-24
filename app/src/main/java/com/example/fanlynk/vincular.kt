@@ -30,8 +30,8 @@ class vincular : AppCompatActivity() {
             insets
         }
 
-        listDispo = findViewById(R.id.listDispo)
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+//        listDispo = findViewById(R.id.listDispo)
+//        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
 
         findViewById<TextView>(R.id.textView3).setOnClickListener {
             val intent = Intent(this, Manejar_dispositivo::class.java)
