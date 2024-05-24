@@ -39,10 +39,16 @@ class Manejar_dispositivo : AppCompatActivity() {
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
 
-        findViewById<ImageView>(R.id.imgAgregar).setOnClickListener {
-            val intent = Intent(this, sincronizar::class.java)
+        val imgBluetoothSettings: ImageView = findViewById(R.id.imgAgregar)
+        imgBluetoothSettings.setOnClickListener {
+            val intent = Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS)
             startActivity(intent)
         }
+
+//        findViewById<ImageView>(R.id.imgAgregar).setOnClickListener {
+//            val intent = Intent(this, sincronizar::class.java)
+//            startActivity(intent)
+//        }
 
         findViewById<ImageView>(R.id.imgVincular).setOnClickListener {
             val intent = Intent(this, vincular::class.java)
