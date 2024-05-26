@@ -4,160 +4,226 @@ import android.Manifest
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import java.io.IOException
-class vincular : AppCompatActivity() {
+import java.io.InputStream
+import java.io.OutputStream
+import java.util.*
 
-    private lateinit var bluetoothAdapter: BluetoothAdapter
-    private lateinit var dispositivosArrayAdapter: ArrayAdapter<String>
-    private lateinit var listaDispositivos: ListView
+class vincular : AppCompatActivity() {
+    private var mBtAdapter: BluetoothAdapter? = null
+    private var btSocket: BluetoothSocket? = null
+    private var dispositivoSeleccionado: BluetoothDevice? = null
+    private var myConexionBT: ConnectedThread? = null
+    private val mNameDevices = ArrayList<String>()
+    private var deviceAdapter: ArrayAdapter<String>? = null
+
+    private var someActivityResultLauncher: ActivityResultLauncher<Intent>? = null
+
+    companion object {
+        private const val TAG = "VincularActivity"
+        private val BT_MODULE_UUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
+        const val REQUEST_ENABLE_BT = 1
+        const val REQUEST_BLUETOOTH_CONNECT_PERMISSION = 3
+        const val REQUEST_FINE_LOCATION_PERMISSION = 2
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_vincular)
 
-        listaDispositivos = findViewById(R.id.listDispo)
+        someActivityResultLauncher = registerForActivityResult(
+            StartActivityForResult(),
+            ActivityResultCallback { result ->
+                if (result.resultCode == REQUEST_ENABLE_BT) {
+                    Log.d(TAG, "Bluetooth activado")
+                }
+            }
+        )
 
-        // Verificar y solicitar permisos en tiempo de ejecución
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(
-                    Manifest.permission.BLUETOOTH,
-                    Manifest.permission.BLUETOOTH_ADMIN,
-                    Manifest.permission.BLUETOOTH_CONNECT
-                ),
-                REQUEST_BLUETOOTH_PERMISSIONS
-            )
-        } else {
-            inicializarBluetooth()
+        findViewById<View>(R.id.IdBtnBuscar).setOnClickListener {
+            dispositivosVinculados()
         }
-    }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_BLUETOOTH_PERMISSIONS) {
-            if (grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-                inicializarBluetooth()
-            } else {
-                Toast.makeText(this, "Permiso de Bluetooth denegado", Toast.LENGTH_SHORT).show()
-                finish()
+        findViewById<View>(R.id.IdBtnConectar).setOnClickListener {
+            conectarDispositivoBT()
+        }
+        findViewById<View>(R.id.IdBtnDesconectar).setOnClickListener {
+            if (btSocket != null) {
+                try {
+                    btSocket!!.close()
+                } catch (e: IOException) {
+                    Toast.makeText(baseContext, "Error", Toast.LENGTH_SHORT).show()
+                }
+            }
+            finish()
+        }
+
+        deviceAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, mNameDevices)
+        deviceAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        val IdDisEncontrados = findViewById<Spinner>(R.id.IdDisEncontrados)
+        IdDisEncontrados.adapter = deviceAdapter
+
+        IdDisEncontrados.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View?, position: Int, id: Long) {
+                dispositivoSeleccionado = getBluetoothDeviceByName(mNameDevices[position])
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                dispositivoSeleccionado = null
             }
         }
+
+        requestBluetoothConnectPermission()
+        requestLocationPermission()
     }
 
-    private fun inicializarBluetooth() {
-        // Inicializar BluetoothAdapter
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+    private fun requestLocationPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            REQUEST_FINE_LOCATION_PERMISSION
+        )
+    }
 
-        // Verificar si el dispositivo soporta Bluetooth
-        if (bluetoothAdapter == null) {
-            Toast.makeText(this, "Este dispositivo no soporta Bluetooth", Toast.LENGTH_SHORT).show()
+    private fun requestBluetoothConnectPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.BLUETOOTH),
+            REQUEST_BLUETOOTH_CONNECT_PERMISSION
+        )
+    }
+
+    private fun getBluetoothDeviceByName(name: String): BluetoothDevice? {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.BLUETOOTH
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            Log.d(TAG, "Permiso de Bluetooth no otorgado")
+            return null
+        }
+        val pairedDevices = BluetoothAdapter.getDefaultAdapter()?.bondedDevices
+        pairedDevices?.forEach { device ->
+            if (device.name == name) {
+                return device
+            }
+        }
+        return null
+    }
+
+    private fun dispositivosVinculados() {
+        mBtAdapter = BluetoothAdapter.getDefaultAdapter()
+        if (mBtAdapter == null) {
+            showToast("Bluetooth no disponible en este dispositivo.")
             finish()
             return
         }
 
-        // Verificar si el Bluetooth está habilitado
-        if (!bluetoothAdapter.isEnabled) {
-            solicitarHabilitarBluetooth()
-        } else {
-            mostrarDispositivosVinculados()
-        }
-    }
-
-    private fun solicitarHabilitarBluetooth() {
-        val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.BLUETOOTH_CONNECT
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
+        if (!mBtAdapter!!.isEnabled) {
+            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            someActivityResultLauncher?.launch(enableBtIntent)
             return
         }
-        startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_ENABLE_BT) {
-            if (resultCode == RESULT_OK) {
-                mostrarDispositivosVinculados()
+        val pairedDevices = mBtAdapter?.bondedDevices
+        pairedDevices?.let {
+            if (it.isNotEmpty()) {
+                it.forEach { device ->
+                    if (ActivityCompat.checkSelfPermission(
+                            this,
+                            Manifest.permission.BLUETOOTH_CONNECT
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        // TODO: Consider calling
+                        //    ActivityCompat#requestPermissions
+                        // here to request the missing permissions, and then overriding
+                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                        //                                          int[] grantResults)
+                        // to handle the case where the user grants the permission. See the documentation
+                        // for ActivityCompat#requestPermissions for more details.
+                        return
+                    }
+                    mNameDevices.add(device.name)
+                }
+                deviceAdapter?.notifyDataSetChanged()
             } else {
-                Toast.makeText(this, "Bluetooth no habilitado, la aplicación se cerrará", Toast.LENGTH_SHORT).show()
-                finish()
+                showToast("No hay dispositivos Bluetooth emparejados.")
             }
         }
     }
 
-    private fun conectarDispositivo(dispositivo: BluetoothDevice) {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.BLUETOOTH_CONNECT
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.BLUETOOTH_CONNECT),
-                PERMISSION_REQUEST_BLUETOOTH_CONNECT
-            )
+    private fun conectarDispositivoBT() {
+        if (dispositivoSeleccionado == null) {
+            showToast("Selecciona un dispositivo Bluetooth.")
             return
         }
 
-        val socket: BluetoothSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(null)
-
         try {
-            socket.connect()
-            // Aquí puedes continuar con la lógica de tu aplicación después de conectarte al dispositivo
-            // Por ejemplo, podrías enviar o recibir datos a través del socket Bluetooth
-            // También deberías manejar las excepciones apropiadamente en un entorno de producción
-        } catch (e: IOException) {
-            e.printStackTrace()
-            // Manejar la excepción de conexión aquí
-        }
-    }
-
-    private fun mostrarDispositivosVinculados() {
-        val dispositivosVinculados: Set<BluetoothDevice> = bluetoothAdapter.bondedDevices
-        val nombresDispositivos = ArrayList<String>()
-        for (dispositivo in dispositivosVinculados) {
             if (ActivityCompat.checkSelfPermission(
                     this,
                     Manifest.permission.BLUETOOTH_CONNECT
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
                 return
             }
-            nombresDispositivos.add(dispositivo.name)
-        }
-
-        dispositivosArrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, nombresDispositivos)
-        listaDispositivos.adapter = dispositivosArrayAdapter
-
-        // Manejar la selección de dispositivo
-        listaDispositivos.setOnItemClickListener { _, _, position, _ ->
-            val dispositivoSeleccionado = dispositivosVinculados.elementAt(position)
-            conectarDispositivo(dispositivoSeleccionado)
+            btSocket = dispositivoSeleccionado!!.createRfcommSocketToServiceRecord(BT_MODULE_UUID)
+            btSocket!!.connect()
+            myConexionBT = ConnectedThread(btSocket!!)
+            myConexionBT?.start()
+            showToast("Conexión exitosa.")
+        } catch (e: IOException) {
+            showToast("Error al conectar con el dispositivo.")
         }
     }
 
-    companion object {
-        private const val REQUEST_ENABLE_BT = 1
-        private const val REQUEST_BLUETOOTH_PERMISSIONS = 101
-        private const val PERMISSION_REQUEST_BLUETOOTH_CONNECT = 1
+    private inner class ConnectedThread(socket: BluetoothSocket) : Thread() {
+        private val mmOutStream: OutputStream?
+
+        init {
+            var tmpOut: OutputStream? = null
+            try {
+                tmpOut = socket.outputStream
+            } catch (e: IOException) {
+                showToast("Error al crear el flujo de datos.")
+            }
+            mmOutStream = tmpOut
+        }
+
+        fun write(input: Char) {
+            try {
+                mmOutStream?.write(input.code.toByte().toInt())
+            } catch (e: IOException) {
+                showToast("La conexión falló")
+                finish()
+            }
+        }
     }
 
+    private fun showToast(message: String) {
+        runOnUiThread {
+            Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+        }
+    }
 }

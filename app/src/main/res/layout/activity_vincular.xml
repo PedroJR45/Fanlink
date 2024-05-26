@@ -2,65 +2,84 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".vincular">
+    tools:context=".MainActivity">
+
+
     <View
         android:id="@+id/fondoHome"
-        android:layout_width="412dp"
+        android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="@drawable/rounded_top_background"
         android:backgroundTint="#0B67AC"
         android:backgroundTintMode="src_in"
         android:drawingCacheQuality="high"
         android:rotationX="-6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintVertical_weight="0.5" />
+        app:layout_constraintVertical_weight="0.5"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="2dp" />
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="254dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="128dp"
-        android:text="Dispositivos previamente conectados "
+        android:id="@+id/textView"
+        android:layout_width="375dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="15dp"
+        android:text="Dispositivos conectados previamente "
         android:textColor="#0B67AC"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/IdDisEncontrados"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintHorizontal_bias="0.857"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/fondoHome" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="71dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="28dp"
-        android:text="Regresar"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
+    <Button
+        android:id="@+id/IdBtnBuscar"
+        android:layout_width="180dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="380dp"
+        android:text="BUSCAR"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/IdDisEncontrados" />
 
-    <ListView
-        android:id="@+id/listDispo"
-        android:layout_width="409dp"
-        android:layout_height="519dp"
-        android:layout_marginBottom="20dp"
+    <Spinner
+        android:id="@+id/IdDisEncontrados"
+        android:layout_width="416dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="450dp"
+        android:spinnerMode="dropdown"
+        android:textColorHint="#808080"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/IdBtnConectar"
+        android:layout_width="180dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="380dp"
+        android:text="CONECTAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toEndOf="@+id/IdBtnBuscar"
+        app:layout_constraintTop_toBottomOf="@+id/IdDisEncontrados" />
 
-    <!--//cambios-->
+    <Button
+        android:id="@+id/IdBtnDesconectar"
+        android:layout_width="200dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="28dp"
+        android:text="DESCONECTAR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
