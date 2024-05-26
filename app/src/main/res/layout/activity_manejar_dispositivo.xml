@@ -39,8 +39,8 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="232dp"
-        android:layout_height="47dp"
+        android:layout_width="292dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#FDF6FE"
         android:text="Encender/Apagar"
