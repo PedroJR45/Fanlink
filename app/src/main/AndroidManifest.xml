@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+<!--    <uses-permission android:name="android.permission.BLUETOOTH" />-->
+<!--    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />-->
+<!--    &lt;!&ndash; Permiso para solicitar conexión Bluetooth &ndash;&gt;-->
+<!--    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>-->
 
+<!--    &lt;!&ndash; Permiso para solicitar permisos en tiempo de ejecución &ndash;&gt;-->
+<!--    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />-->
+<!--    <uses-permission android:name="android.permission.REQUEST_PERMISSIONS" />-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,7 +27,7 @@
         android:theme="@style/Theme.Fanlynk"
         tools:targetApi="31">
         <activity
-            android:name=".Manejar_dispositivo"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".vincular"
@@ -29,7 +42,7 @@
             android:name=".registrarse"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Manejar_dispositivo"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
