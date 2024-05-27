@@ -26,8 +26,8 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="239dp"
-        android:layout_height="55dp"
+        android:layout_width="299dp"
+        android:layout_height="42dp"
         android:layout_marginTop="290dp"
         android:text="Dispositivo Vinculado"
         android:textAlignment="center"
@@ -61,43 +61,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="Agregar"
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
+        app:layout_constraintHorizontal_bias="0.753"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgAgregar" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="59dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="8dp"
-        android:text="Vincular"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.968"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgVincular" />
-
-
-    <ImageView
-        android:id="@+id/imgAgregar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="304dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fondoHome"
-        app:srcCompat="@drawable/agregar" />
 
     <ImageView
         android:id="@+id/imgVincular"
@@ -107,10 +83,34 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toEndOf="@+id/imgAgregar"
         app:layout_constraintTop_toBottomOf="@+id/fondoHome"
         app:srcCompat="@drawable/vincular" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="59dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="4dp"
+        android:text="Vincular"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgVincular" />
+
+    <ImageView
+        android:id="@+id/imgAgregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fondoHome"
+        app:srcCompat="@drawable/agregar" />
 
     <ImageView
         android:id="@+id/imageEncendidoApagado"
@@ -132,8 +132,10 @@
         android:text="Cerrar sesion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.544"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-<!--//cambios-->
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.546" />
+    <!--//cambios-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
