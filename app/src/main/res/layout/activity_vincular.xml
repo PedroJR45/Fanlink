@@ -19,12 +19,13 @@
         android:rotationX="-6"
         app:layout_constraintVertical_weight="0.5"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="2dp" />
+        tools:layout_editor_absoluteY="2dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="375dp"
-        android:layout_height="68dp"
+        android:layout_width="359dp"
+        android:layout_height="106dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="15dp"
         android:text="Dispositivos conectados previamente "
@@ -33,21 +34,23 @@
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/IdDisEncontrados"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_bias="0.702"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fondoHome" />
+        app:layout_constraintTop_toBottomOf="@+id/fondoHome"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/IdBtnBuscar"
-        android:layout_width="180dp"
+        android:layout_width="150dp"
         android:layout_height="53dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="380dp"
         android:text="BUSCAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IdDisEncontrados" />
+        app:layout_constraintTop_toBottomOf="@+id/IdDisEncontrados"
+        app:layout_constraintVertical_bias="0.466" />
 
     <Spinner
         android:id="@+id/IdDisEncontrados"
@@ -57,20 +60,23 @@
         android:spinnerMode="dropdown"
         android:textColorHint="#808080"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/IdBtnConectar"
-        android:layout_width="180dp"
+        android:layout_width="150dp"
         android:layout_height="53dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="380dp"
         android:text="CONECTAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.417"
         app:layout_constraintStart_toEndOf="@+id/IdBtnBuscar"
-        app:layout_constraintTop_toBottomOf="@+id/IdDisEncontrados" />
+        app:layout_constraintTop_toBottomOf="@+id/IdDisEncontrados"
+        app:layout_constraintVertical_bias="0.466" />
 
     <Button
         android:id="@+id/IdBtnDesconectar"
