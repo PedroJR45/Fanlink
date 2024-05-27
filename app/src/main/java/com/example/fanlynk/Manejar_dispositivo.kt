@@ -63,15 +63,6 @@ class Manejar_dispositivo : AppCompatActivity() {
         findViewById<ImageView>(R.id.imageEncendidoApagado).setOnClickListener {
             toggleAndSendBluetoothSignal()
         }
-
-        findViewById<Button>(R.id.button2).setOnClickListener {
-            connectToBluetoothDevice()
-        }
-
-        findViewById<Button>(R.id.button3).setOnClickListener {
-            val intent = Intent(Settings.ACTION_BLUETOOTH_SETTINGS)
-            startActivity(intent)
-        }
     }
 
     private fun connectToBluetoothDevice() {
@@ -117,6 +108,12 @@ class Manejar_dispositivo : AppCompatActivity() {
             e.printStackTrace()
             Toast.makeText(this, "Error al enviar la señal", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun logOut() {
+        val intent = Intent(this, Iniciar_session::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun onDestroy() {
