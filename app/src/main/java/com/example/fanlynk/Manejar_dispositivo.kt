@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothSocket
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -51,7 +52,6 @@ class Manejar_dispositivo : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         val buttonSendSignal = findViewById<Button>(R.id.button)
         buttonSendSignal.setOnClickListener {
             toggleAndSendBluetoothSignal()
@@ -75,6 +75,7 @@ class Manejar_dispositivo : AppCompatActivity() {
                     Manifest.permission.BLUETOOTH_CONNECT
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
+
                 return
             }
             bluetoothSocket = device.createRfcommSocketToServiceRecord(uuid)
@@ -92,12 +93,18 @@ class Manejar_dispositivo : AppCompatActivity() {
     }
 
     private fun sendBluetoothSignal(signal: String) {
-        try {
-            bluetoothSocket?.outputStream?.write(signal.toByteArray())
-            Toast.makeText(this, "Señal enviada: $signal", Toast.LENGTH_SHORT).show()
-        } catch (e: IOException) {
-            e.printStackTrace()
-            Toast.makeText(this, "Error al enviar la señal", Toast.LENGTH_SHORT).show()
+        if (bluetoothSocket?.isConnected == true) {
+            try {
+                Log.d("BluetoothSignal", "Enviando señal: $signal")
+                bluetoothSocket?.outputStream?.write(signal.toByteArray())
+                Toast.makeText(this, "Señal enviada: $signal", Toast.LENGTH_SHORT).show()
+            } catch (e: IOException) {
+                e.printStackTrace()
+                Toast.makeText(this, "Error al enviar la señal", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(this, "Bluetooth no está conectado", Toast.LENGTH_SHORT).show()
+            Log.e("BluetoothSignal", "El socket Bluetooth no está conectado")
         }
     }
 
