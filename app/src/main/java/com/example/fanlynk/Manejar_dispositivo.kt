@@ -50,18 +50,55 @@ class Manejar_dispositivo : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val buttons = listOf<Button>(
-            findViewById(R.id.button)
-        )
-
-        buttons.forEach { button ->
-            button.setOnClickListener {
+        // Configuración del botón para enviar señal
+        val buttonSendSignal = findViewById<Button>(R.id.button)
+        buttonSendSignal.setOnClickListener {
+            if (!isConnected) {
+                connectToBluetoothDevice()
+            } else {
                 toggleAndSendBluetoothSignal()
             }
         }
 
+        // Configuración del botón de logout
+        val buttonLogout = findViewById<Button>(R.id.buttonLogout)
+        buttonLogout.setOnClickListener {
+            logout()
+        }
+
+        // Configuración del ImageView para enviar señal
         findViewById<ImageView>(R.id.imageEncendidoApagado).setOnClickListener {
-            toggleAndSendBluetoothSignal()
+            if (!isConnected) {
+                connectToBluetoothDevice()
+            } else {
+                toggleAndSendBluetoothSignal()
+            }
+        }
+    }
+
+    private fun connectToBluetoothDevice() {
+        val device: BluetoothDevice? = bluetoothAdapter?.getRemoteDevice(deviceAddress)
+        try {
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.BLUETOOTH_CONNECT
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.BLUETOOTH_CONNECT),
+                    1
+                )
+                return
+            }
+            bluetoothSocket = device?.createRfcommSocketToServiceRecord(uuid)
+            bluetoothSocket?.connect()
+            isConnected = true
+            Toast.makeText(this, "Conectado", Toast.LENGTH_SHORT).show()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            isConnected = false
+            Toast.makeText(this, "Error al conectar", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -84,6 +121,12 @@ class Manejar_dispositivo : AppCompatActivity() {
         }
     }
 
+    private fun logout() {
+        // Redirigir a la ventana Iniciar_sesion
+        val intent = Intent(this, Iniciar_session::class.java)
+        startActivity(intent)
+        finish()
+    }
 
     override fun onDestroy() {
         super.onDestroy()
