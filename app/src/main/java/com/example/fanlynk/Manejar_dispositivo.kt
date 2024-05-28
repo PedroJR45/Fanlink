@@ -51,6 +51,7 @@ class Manejar_dispositivo : AppCompatActivity() {
             startActivity(intent)
         }
 
+
         val buttonSendSignal = findViewById<Button>(R.id.button)
         buttonSendSignal.setOnClickListener {
             toggleAndSendBluetoothSignal()
