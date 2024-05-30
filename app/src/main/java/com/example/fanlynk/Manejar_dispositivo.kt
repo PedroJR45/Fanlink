@@ -111,6 +111,7 @@ class Manejar_dispositivo : AppCompatActivity() {
         finish()
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
         try {

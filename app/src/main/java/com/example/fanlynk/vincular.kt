@@ -33,6 +33,7 @@ class vincular : AppCompatActivity() {
     private var deviceAdapter: ArrayAdapter<String>? = null
     private var someActivityResultLauncher: ActivityResultLauncher<Intent>? = null
 
+
     companion object {
         private const val TAG = "VincularActivity"
         // UUID para el módulo Bluetooth (RFCOMM genérico)

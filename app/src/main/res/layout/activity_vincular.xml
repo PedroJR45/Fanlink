@@ -72,10 +72,10 @@
         android:text="Enviar"
         app:layout_constraintBottom_toTopOf="@+id/IdBtnDesconectar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IdDisEncontrados"
-        app:layout_constraintVertical_bias="0.693" />
+        app:layout_constraintVertical_bias="0.657" />
 
     <Button
         android:id="@+id/IdBtnBuscar"
