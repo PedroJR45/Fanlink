@@ -79,6 +79,7 @@ class vincular : AppCompatActivity() {
             finish()
         }
 
+
         // Configurar adaptador y listener para el Spinner de dispositivos encontrados
         deviceAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, mNameDevices)
         deviceAdapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -92,6 +93,12 @@ class vincular : AppCompatActivity() {
             override fun onNothingSelected(parentView: AdapterView<*>?) {
                 dispositivoSeleccionado = null
             }
+        }
+
+        // Configurar OnClickListener para el botón 'button2'
+        findViewById<View>(R.id.button2).setOnClickListener {
+            myConexionBT?.write('1')
+            Toast.makeText(baseContext, "Comando enviado", Toast.LENGTH_SHORT).show()
         }
 
         // Solicitar permisos necesarios

@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.io.BufferedOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.util.*
@@ -94,32 +95,15 @@ class Manejar_dispositivo : AppCompatActivity() {
     }
 
     private fun sendBluetoothSignal(signal: String) {
-        if (bluetoothSocket?.isConnected == true) {
-            try {
-                Log.d("BluetoothSignal", "Enviando señal: $signal")
-                bluetoothSocket?.outputStream?.write(signal.toByteArray())
-
-                // Leer respuesta del HC-05
-                val inputStream: InputStream? = bluetoothSocket?.inputStream
-                val buffer = ByteArray(1024)
-                val bytes = inputStream?.read(buffer)
-                val response = String(buffer, 0, bytes ?: 0)
-                Log.d("BluetoothResponse", "Respuesta recibida: $response")
-
-                if (response.trim() == "recibido") {
-                    Toast.makeText(this, "Señal recibida por el dispositivo", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "Respuesta inesperada: $response", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: IOException) {
-                e.printStackTrace()
-                Toast.makeText(this, "Error al enviar la señal", Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            Toast.makeText(this, "Bluetooth no está conectado", Toast.LENGTH_SHORT).show()
-            Log.e("BluetoothSignal", "El socket Bluetooth no está conectado")
+        try {
+            bluetoothSocket?.outputStream?.write(signal.toByteArray())
+            Toast.makeText(this, "Señal enviada: $signal", Toast.LENGTH_SHORT).show()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Toast.makeText(this, "Error al enviar la señal", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     private fun logout() {
         val intent = Intent(this, Iniciar_session::class.java)

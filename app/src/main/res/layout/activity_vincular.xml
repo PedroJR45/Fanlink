@@ -39,29 +39,16 @@
         app:layout_constraintTop_toBottomOf="@+id/fondoHome"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/IdBtnBuscar"
-        android:layout_width="150dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="380dp"
-        android:text="BUSCAR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IdDisEncontrados"
-        app:layout_constraintVertical_bias="0.466" />
-
     <Spinner
         android:id="@+id/IdDisEncontrados"
         android:layout_width="416dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="450dp"
+        android:layout_marginBottom="416dp"
         android:spinnerMode="dropdown"
         android:textColorHint="#808080"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-3dp" />
 
     <Button
         android:id="@+id/IdBtnConectar"
@@ -73,19 +60,44 @@
         android:text="CONECTAR"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.417"
+        app:layout_constraintHorizontal_bias="0.41"
         app:layout_constraintStart_toEndOf="@+id/IdBtnBuscar"
         app:layout_constraintTop_toBottomOf="@+id/IdDisEncontrados"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        app:layout_constraintBottom_toTopOf="@+id/IdBtnDesconectar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IdDisEncontrados"
+        app:layout_constraintVertical_bias="0.693" />
+
+    <Button
+        android:id="@+id/IdBtnBuscar"
+        android:layout_width="150dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="380dp"
+        android:text="BUSCAR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IdDisEncontrados"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/IdBtnDesconectar"
         android:layout_width="200dp"
         android:layout_height="53dp"
-        android:layout_marginEnd="104dp"
         android:layout_marginBottom="28dp"
         android:text="DESCONECTAR"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
