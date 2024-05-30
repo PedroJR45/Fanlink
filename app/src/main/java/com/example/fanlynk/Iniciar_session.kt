@@ -43,7 +43,7 @@ class Iniciar_session : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = firebaseAuth.currentUser
                     Toast.makeText(this, "Inicio exitoso.", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, Manejar_dispositivo::class.java)
+                    val intent = Intent(this, vincular::class.java)
                     startActivity(intent)
                     finish() // Opcional: cierra la actividad actual si no deseas que el usuario vuelva atrás
                 } else {

@@ -51,7 +51,7 @@ class registrarse : AppCompatActivity() {
                     // Registro exitoso
                     val user: FirebaseUser? = firebaseAuth.currentUser
                     Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, Manejar_dispositivo::class.java)
+                    val intent = Intent(this, vincular::class.java)
                     startActivity(intent)
                     finish() // Opcional: cierra la actividad actual si no deseas que el usuario vuelva atrás
                     // Aquí puedes guardar información adicional del usuario en la base de datos si es necesario
